@@ -1,0 +1,35 @@
+.round {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 1px solid silver;
+
+  color: black;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 10px;
+}
+.colors {
+  background-color: green;
+}
+.modalContent {
+  background-color: white;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 5, 5);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+  overflow-y: auto;
+}
+@media only screen and(max-width:768px) {
+  .modalContent {
+    max-height: 800px;
+    max-width: 100%;
+    overflow-y: auto;
+  }
+}

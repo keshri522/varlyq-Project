@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../Styles/FirstModal.module.css";
-
+import SecondModal from "./SecondModal";
+import ReactDOM from "react-dom";
 const FirstModal = ({ closeModal }) => {
-  const handleCreateJob = () => {
-    // console.log('Creating a job...');
+  const [openModal, SetopenMoal] = useState(false); // this will handle the 32nd modal status
+  //   const handleCreateJob = () => {
+  //     // closeModal();
+  //     SetopenMoal(true); // this will open the modal
+  //     // this will close the previous modal which is the first one
+  //   };
+
+  // this function will close the second modal
+  const ClosesecondModal = () => {
+    SetopenMoal(false);
   };
 
   return (
@@ -28,7 +37,10 @@ const FirstModal = ({ closeModal }) => {
             <div className="col-md-6 mt-2">
               <button
                 className="btn btn-success w-100"
-                onClick={handleCreateJob}
+                onClick={() => {
+                  SetopenMoal(true);
+                  //   closeModal();
+                }}
               >
                 Post New Job
               </button>
@@ -36,6 +48,12 @@ const FirstModal = ({ closeModal }) => {
           </div>
         </div>
       </div>
+      {/* // this will show the second modal here in other nodes */}
+      {openModal &&
+        ReactDOM.createPortal(
+          <SecondModal ClosesecondModal={ClosesecondModal} />,
+          document.getElementById("custom-modal")
+        )}
     </>
   );
 };
