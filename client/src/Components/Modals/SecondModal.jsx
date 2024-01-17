@@ -131,7 +131,7 @@ const SecondModal = ({ ClosesecondModal }) => {
             </div>
             <div className="col-md-3">
               <button onClick={ClosesecondModal} className="btn btn-danger">
-                Cloase
+                Close
               </button>
             </div>
           </div>

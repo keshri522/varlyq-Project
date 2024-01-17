@@ -1,0 +1,90 @@
+import React from "react";
+import styles from "../Styles/Fourth.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
+const FourthModal = ({ handleSubmit }) => {
+  // this is the second modal that will open once user clcked on post new job
+
+  return (
+    <div className={`d-flex justify-content-center col-md-8 `}>
+      <div className={`col-md-7 mt-1 px-5 ${styles.modalContent}`}>
+        <h1 className="text-center">Create a Job</h1>
+        <div className="text-center mt-1">
+          <div className=" col-md-12 ">
+            <p className="text-muted">
+              A job represents a new opening, an open position, or a vacancy
+              listing. Creating a job will allow you to add candidates to that
+              job and advertise it on your career page and job boards.
+            </p>
+          </div>
+        </div>
+        <div className="d-flex justify-content-center">
+          <div className="col-md-8 text-center ">
+            <div className="row mt-4 d-flex justify-content-between">
+              <div className="col-md-6">
+                <span className={`${styles.round} bg-success`}>
+                  <i class="fa-solid fa-check "></i>
+                </span>{" "}
+                Job Description <span className={`${styles.round}`}>2</span>
+              </div>
+              <div className="col-md-6">
+                <span className={`${styles.round}`}>3</span> Interview Process
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row mt-2 d-flex justify-content-between">
+          <div className="col-md-6">
+            <label htmlFor="Skill" className="form-label">
+              Kindly Check the Skills
+            </label>
+            <input type="text" className="form-control" id="jobTitle" />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="intern" className="form-label">
+              Any Plateform or Qualification
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="jobTitle"
+              placeholder="selected Intern’s day-to-day responsibilities include"
+            />
+          </div>
+        </div>
+        <div className="row mt-2 d-flex justify-content-between">
+          <div className="col-md-6">
+            <label htmlFor="textArea1" className="form-label">
+              Finalise Questione
+            </label>
+            <textarea
+              className={`form-control ${styles.resizeOff}`}
+              id="textArea1"
+              rows="3"
+              placeholder="Enter text here..."
+            ></textarea>
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="textArea2" className="form-label">
+              Share Availiblity
+            </label>
+            <textarea
+              className={`form-control ${styles.resizeOff}`}
+              id="textArea2"
+              rows="3"
+              placeholder="Enter text here..."
+            ></textarea>
+          </div>
+        </div>
+        <div className="row d-flex justify-content-center mt-4">
+          <div className="col-md-3">
+            <button onClick={handleSubmit} className="btn btn-primary px-5">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FourthModal;
