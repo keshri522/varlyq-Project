@@ -1,9 +1,11 @@
 import "./App.css";
-
+import GetStarted from "./Components/Modals/GetStarted";
+import FirstModal from "./Components/Modals/FirstModal";
 function App() {
   return (
     <div className="App">
-      <h1>Welcome back</h1>
+      {/* <GetStarted /> */}
+      <FirstModal />
     </div>
   );
 }
