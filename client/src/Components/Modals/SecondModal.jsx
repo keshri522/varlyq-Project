@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import ThirdModal from "./ThirdModal";
-import ReactDOM from "react-dom";
+
 import styles from "../Styles/SecondModal.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
-const SecondModal = ({ ClosesecondModal }) => {
-  const [thirdModal, setthirdModal] = useState(false);
+const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
   // this is the second modal that will open once user clcked on post new job
   // this function will open a new modal and save all the data in the redux
   const hanndleSaveData = () => {
-    setthirdModal(true); // this will open the thrid modal
+    OpenThirdModal(); // this will open the thried one
+    closeSecondModal(); // this will close the second one
+    // setthirdModal(true); // this will open the thrid modal
     // ClosesecondModal();
   };
-  // this will close the modal
-  const ThridMoalClose = () => {
-    setthirdModal(false);
-  };
+
   return (
     <>
       <div className={`d-flex justify-content-center col-md-8 `}>
@@ -123,26 +120,27 @@ const SecondModal = ({ ClosesecondModal }) => {
               <input type="text" className="form-control" id="startDate" />
             </div>
           </div>
-          <div className="row mt-1 d-flex justify-content-between  mt-2">
+          <div className="row mt-1 d-flex justify-content-between mt-2">
             <div className="col-md-3">
-              <button onClick={hanndleSaveData} className="btn btn-primary">
-                Save and Exit
+              <button
+                onClick={hanndleSaveData}
+                className="btn btn-primary btn-block btn-mobile mb-2 mb-md-0"
+              >
+                Save and Next
               </button>
             </div>
+
             <div className="col-md-3">
-              <button onClick={ClosesecondModal} className="btn btn-danger">
+              <button
+                onClick={closeSecondModal}
+                className="btn btn-danger res btn-mobile"
+              >
                 Close
               </button>
             </div>
           </div>
         </div>
       </div>
-      {/* // this will add new node in the documents of virtual dom */}
-      {thirdModal &&
-        ReactDOM.createPortal(
-          <ThirdModal ThridMoalClose={ThridMoalClose} />,
-          document.getElementById("custom-modal")
-        )}
     </>
   );
 };

@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "../Styles/Fourth.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
-const FourthModal = ({ handleSubmit }) => {
+const FourthModal = ({ CloaseFourthModal }) => {
   // this is the second modal that will open once user clcked on post new job
-
+  const handleSubmit = () => {
+    // this will handle all the api calls and othe5 functions
+    CloaseFourthModal();
+  };
   return (
     <div className={`d-flex justify-content-center col-md-8 `}>
       <div className={`col-md-7 mt-1 px-5 ${styles.modalContent}`}>

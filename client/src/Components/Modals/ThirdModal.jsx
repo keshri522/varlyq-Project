@@ -1,16 +1,12 @@
-import React, { useState } from "react";
-import FourthModal from "./FourthModal";
-import ReactDOM from "react-dom";
 import styles from "../Styles/ThirdModal.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
-const ThirdModal = ({ ThridMoalClose }) => {
-  const [fourthModal, SetfourthModal] = useState(false); // this will handle the stage of the fourth modal
-
+const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
   // this is the second modal that will open once user clcked on post new job
   const OpenFourthModal = () => {
-    SetfourthModal(true);
+    openFoursModal(); // this will open the fourth modal
+    CloseThirdModal(); // this will close the third modal
   };
   const handleSubmit = () => {
-    SetfourthModal(false);
+    CloseThirdModal(); // this will cloase the thrid one
   };
   return (
     <>
@@ -65,26 +61,27 @@ const ThirdModal = ({ ThridMoalClose }) => {
             </div>
           </div>
 
-          <div className="row mt-1 d-flex justify-content-between  mt-4">
+          <div className="row mt-1 d-flex justify-content-between mt-2">
             <div className="col-md-3">
-              <button onClick={OpenFourthModal} className="btn btn-primary">
-                Save and Exit
+              <button
+                onClick={OpenFourthModal}
+                className="btn btn-primary btn-block btn-mobile mb-2 mb-md-0"
+              >
+                Save and Next
               </button>
             </div>
+
             <div className="col-md-3">
-              <button onClick={ThridMoalClose} className="btn btn-danger">
+              <button
+                onClick={handleSubmit}
+                className="btn btn-danger res btn-mobile"
+              >
                 Close
               </button>
             </div>
           </div>
         </div>
       </div>
-      {/* // this will show the second modal here in other nodes */}
-      {fourthModal &&
-        ReactDOM.createPortal(
-          <FourthModal handleSubmit={handleSubmit} />,
-          document.getElementById("custom-modal")
-        )}
     </>
   );
 };

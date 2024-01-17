@@ -25,9 +25,9 @@
 .resizeOff {
   resize: none;
 }
-@media only screen and(max-width:768px) {
+@media only screen and (max-width: 768px) {
   .modalContent {
-    max-height: 800px;
+    max-height: 500px;
     max-width: 100%;
     overflow-y: auto;
   }
