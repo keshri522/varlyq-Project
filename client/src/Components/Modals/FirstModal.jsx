@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../Styles/FirstModal.module.css";
 
-const FirstModal = () => {
+const FirstModal = ({ closeModal }) => {
   const handleCreateJob = () => {
     // console.log('Creating a job...');
   };
@@ -13,7 +13,9 @@ const FirstModal = () => {
       >
         <div className={`col-md-4 ${styles.modalContent}`}>
           <div className={`col-md-12 text-end`}>
-            <button className="btn btn-danger ">X</button>
+            <button onClick={closeModal} className="btn btn-danger ">
+              X
+            </button>
           </div>
 
           <div className={`row d-flex justify-content-center mb-5 `}>
