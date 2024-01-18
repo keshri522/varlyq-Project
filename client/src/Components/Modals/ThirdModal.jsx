@@ -27,7 +27,7 @@ const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
       [name]: value,
     });
   };
-  console.log(formData);
+  // console.log(formData); just for debugging
   return (
     <>
       <div className={`d-flex justify-content-center col-md-8 `}>
@@ -96,9 +96,9 @@ const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
           <div className="row mt-1 d-flex justify-content-between mt-2">
             <div className="col-md-3">
               <button
-                // disabled={
-                //   formData.skill.length === 0 || formData.intern.length === 0
-                // }
+                disabled={
+                  formData.skill.length === 0 || formData.intern.length === 0
+                }
                 onClick={handleSubmit}
                 className="btn btn-primary btn-block btn-mobile mb-2 mb-md-0"
               >

@@ -226,17 +226,17 @@ const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
             <div className="col-md-3">
               <button
                 // making the button disabled until all the fields are not filled
-                // disabled={
-                //   formData.jobTitle.length === 0 ||
-                //   formData.companyname.length === 0 ||
-                //   formData.jobpipeline.length === 0 ||
-                //   formData.location.length === 0 ||
-                //   formData.maxsalary.length === 0 ||
-                //   formData.minsalary.length === 0 ||
-                //   formData.frequency.length === 0 ||
-                //   formData.currency.length === 0 ||
-                //   formData.contact.length === 0
-                // }
+                disabled={
+                  formData.jobTitle.length === 0 ||
+                  formData.companyname.length === 0 ||
+                  formData.jobpipeline.length === 0 ||
+                  formData.location.length === 0 ||
+                  formData.maxsalary.length === 0 ||
+                  formData.minsalary.length === 0 ||
+                  formData.frequency.length === 0 ||
+                  formData.currency.length === 0 ||
+                  formData.contact.length === 0
+                }
                 onClick={hanndleSaveData}
                 className="btn btn-primary btn-block btn-mobile mb-2 mb-md-0"
               >

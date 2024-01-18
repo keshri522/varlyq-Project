@@ -67,8 +67,6 @@
 // export default FirstModal;
 import React, { useState } from "react";
 import styles from "../Styles/FirstModal.module.css";
-import SecondModal from "./SecondModal";
-import ReactDOM from "react-dom";
 
 const FirstModal = ({ closeModal, openSecondModal }) => {
   const handleCreateJob = () => {
