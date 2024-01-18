@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
+import { FirstModal } from "../Redux/reducers/User";
+import { useDispatch } from "react-redux";
 import styles from "../Styles/SecondModal.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
 const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     // this is data that  user can fill in this from
     jobTitle: "",
@@ -17,22 +19,21 @@ const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
   // this is the second modal that will open once user clcked on post new job
   // this function will open a new modal and save all the data in the redux
   const hanndleSaveData = () => {
-    // OpenThirdModal(); // this will open the thried one
-    // closeSecondModal(); // this will close the second one
-    // setthirdModal(true); // this will open the thrid modal
-    // ClosesecondModal();
+    // here dispatching an action that will sent all the data in the redux store
+    dispatch(FirstModal(formData));
     console.log(formData);
+    OpenThirdModal(); // this will open the thried one
+    closeSecondModal(); // this will close the second one
   };
   // this function  will  handle the changes in this components
   const handleInputChange = (e) => {
     const { name, value } = e.target; // destructing the props
     setFormData({ ...formData, [name]: value });
   };
-  console.log(formData);
 
   return (
     <>
-      <div className={`d-flex justify-content-center col-md-8 `}>
+      <div className={`d-flex justify-content-center container `}>
         <div className={`col-md-7 mt-1 px-5 ${styles.modalContent}`}>
           <h1 className="text-center">Create a Job</h1>
           <div className="text-center mt-1">
@@ -90,6 +91,10 @@ const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
                 id="jobLocation"
                 onChange={handleInputChange}
               >
+                {" "}
+                <option value="" disabled>
+                  Please Select Company
+                </option>
                 <option value="company1">Company 1</option>
                 <option value="company2">Company 2</option>
               </select>
@@ -108,6 +113,9 @@ const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
                 id="jobpipeline"
                 onChange={handleInputChange}
               >
+                <option value="" disabled>
+                  Please Select Job
+                </option>
                 <option value="pipeline1">Pipeline 1</option>
                 <option value="pipeline2">Pipeline 2</option>
               </select>
@@ -123,6 +131,9 @@ const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
                 id="salary"
                 onChange={handleInputChange}
               >
+                <option value="" disabled>
+                  Please Select Location
+                </option>
                 <option value="location1">Location 1</option>
                 <option value="location2">Location 2</option>
               </select>
@@ -173,6 +184,9 @@ const SecondModal = ({ closeSecondModal, OpenThirdModal }) => {
                 className="form-select"
                 id="endDate"
               >
+                <option value="" disabled>
+                  Please Select Frequency
+                </option>
                 <option value="frequency1">Frequency 1</option>
                 <option value="frequency2">Frequency 2</option>
               </select>
