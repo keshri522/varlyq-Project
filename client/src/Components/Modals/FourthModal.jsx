@@ -20,8 +20,27 @@ const FourthModal = ({ CloaseFourthModal }) => {
   const mergedData = { ...SecondModalData, ...ThirdMoidalData, ...formData };
 
   // this is the second modal that will open once user clcked on post new job
-  const handleSubmit = () => {
-    console.log(mergedData); // just for debugging
+  const handleSubmit = async () => {
+    try {
+      fetch(apiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(mergedData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Handle the response from the backend
+          console.log("API Response:", data);
+
+          // Perform other actions or navigate to the next step
+          // CloaseFourthModal();
+        });
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
     // this will handle all the api calls and othe5 functions
     // CloaseFourthModal();
   };
