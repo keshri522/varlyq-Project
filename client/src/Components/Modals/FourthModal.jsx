@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import axios from "axios";
 import { useSelector } from "react-redux";
 import styles from "../Styles/Fourth.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
 const FourthModal = ({ CloaseFourthModal }) => {
@@ -21,29 +21,26 @@ const FourthModal = ({ CloaseFourthModal }) => {
 
   // this is the second modal that will open once user clcked on post new job
   const handleSubmit = async () => {
-    console.log(mergedData);
-    // try {
-    //   fetch(apiEndpoint, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(mergedData),
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       // Handle the response from the backend
-    //       console.log("API Response:", data);
-    //       // Perform other actions or navigate to the next step
-    //       // CloaseFourthModal();
-    //     });
-    // } catch (error) {
-    //   console.log(error);
-    //   alert(error);
-    // }
-    // this will handle all the api calls and othe5 functions
-    // CloaseFourthModal();
+    // console.log(mergedData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8989/user/savealldata",
+        {
+          mergedData,
+        }
+      );
+      if (response.status === 200) {
+        alert("Data Saved successfully");
+        CloaseFourthModal();
+        // console.log("API Response:", response);
+      }
+    } catch (error) {
+      // console.error("Error:", error);
+      alert(error);
+    }
   };
+
   // this function will handle all the changes in that compoents
   const handleChanges = (e) => {
     const { name, value } = e.target;

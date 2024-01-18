@@ -23,3 +23,4 @@ const UserSchema = new mongoose.Schema(
 
 // Create the model
 const User = mongoose.model("Job", UserSchema);
+module.exports = User;
