@@ -1,13 +1,33 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import styles from "../Styles/ThirdModal.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
+import { setSecondModalData } from "../Redux/reducers/SecodModalSlice";
 const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    // this is data that  user can fill in this from
+    skill: "",
+    intern: "",
+  });
   // this is the second modal that will open once user clcked on post new job
-  const OpenFourthModal = () => {
-    openFoursModal(); // this will open the fourth modal
-    CloseThirdModal(); // this will close the third modal
-  };
+
   const handleSubmit = () => {
-    CloseThirdModal(); // this will cloase the thrid one
+    // making an action call to disptach al the datq in the redux store
+    dispatch(setSecondModalData(formData));
+    openFoursModal(); // this will open the fourth modal
+    CloseThirdModal();
+    // CloseThirdModal(); // this will cloase the thrid one
   };
+  // this function will handle all the changes
+  const HandleChanges = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  console.log(formData);
   return (
     <>
       <div className={`d-flex justify-content-center col-md-8 `}>
@@ -43,7 +63,15 @@ const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
               <label htmlFor="Skill" className="form-label">
                 Skill Required
               </label>
-              <input type="text" className="form-control" id="jobTitle" />
+              <input
+                onChange={HandleChanges}
+                type="text"
+                value={formData.skill}
+                className="form-control"
+                id="skill"
+                name="skill"
+                required
+              />
             </div>
           </div>
 
@@ -53,9 +81,13 @@ const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
                 Intern’s Responsibilities
               </label>
               <input
+                name="intern"
                 type="text"
                 className="form-control"
                 id="jobTitle"
+                required
+                onChange={HandleChanges}
+                value={formData.intern}
                 placeholder="selected Intern’s day-to-day responsibilities include"
               />
             </div>
@@ -64,7 +96,10 @@ const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
           <div className="row mt-1 d-flex justify-content-between mt-2">
             <div className="col-md-3">
               <button
-                onClick={OpenFourthModal}
+                // disabled={
+                //   formData.skill.length === 0 || formData.intern.length === 0
+                // }
+                onClick={handleSubmit}
                 className="btn btn-primary btn-block btn-mobile mb-2 mb-md-0"
               >
                 Save and Next
@@ -73,7 +108,7 @@ const ThirdModal = ({ CloseThirdModal, openFoursModal }) => {
 
             <div className="col-md-3">
               <button
-                onClick={handleSubmit}
+                onClick={CloseThirdModal}
                 className="btn btn-danger res btn-mobile"
               >
                 Close

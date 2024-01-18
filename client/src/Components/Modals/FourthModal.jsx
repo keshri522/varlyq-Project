@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import { useSelector } from "react-redux";
 import styles from "../Styles/Fourth.module.css"; // this is the module css to avoid overlapping the css porpperty i use this
 const FourthModal = ({ CloaseFourthModal }) => {
+  // creating the instance of usedispatch
+  // const dispatch = useDispatch();
+
+  const [formData, setformData] = useState({
+    checkskill: "",
+    qualification: "",
+    finalQuestion: "",
+    availiblity: "",
+  });
+  const SecondModalData = useSelector((state) => state.rootReducers.userdata);
+  const ThirdMoidalData = useSelector(
+    (state) => state.rootReducers.secondmodal
+  );
+  // here i am merging all the redux store and send the merged data in the backend
+  const mergedData = { ...SecondModalData, ...ThirdMoidalData, ...formData };
+
   // this is the second modal that will open once user clcked on post new job
   const handleSubmit = () => {
+    console.log(mergedData); // just for debugging
     // this will handle all the api calls and othe5 functions
-    CloaseFourthModal();
+    // CloaseFourthModal();
+  };
+  // this function will handle all the changes in that compoents
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
+    setformData({
+      ...formData,
+      [name]: value,
+    });
   };
   return (
     <div className={`d-flex justify-content-center col-md-8 `}>
@@ -40,16 +67,26 @@ const FourthModal = ({ CloaseFourthModal }) => {
             <label htmlFor="Skill" className="form-label">
               Kindly Check the Skills
             </label>
-            <input type="text" className="form-control" id="jobTitle" />
+            <input
+              onChange={handleChanges}
+              value={formData.checkskill}
+              type="text"
+              className="form-control"
+              id="checkskill"
+              name="checkskill"
+            />
           </div>
           <div className="col-md-6">
             <label htmlFor="intern" className="form-label">
               Any Plateform or Qualification
             </label>
             <input
+              onChange={handleChanges}
+              name="qualification"
               type="text"
               className="form-control"
-              id="jobTitle"
+              id="qualification"
+              value={formData.qualification}
               placeholder="selected Intern’s day-to-day responsibilities include"
             />
           </div>
@@ -60,10 +97,13 @@ const FourthModal = ({ CloaseFourthModal }) => {
               Finalise Questione
             </label>
             <textarea
+              onChange={handleChanges}
               className={`form-control ${styles.resizeOff}`}
-              id="textArea1"
+              id="finalQuestion"
               rows="3"
               placeholder="Enter text here..."
+              name="finalQuestion"
+              value={formData.finalQuestion}
             ></textarea>
           </div>
           <div className="col-md-6">
@@ -72,15 +112,27 @@ const FourthModal = ({ CloaseFourthModal }) => {
             </label>
             <textarea
               className={`form-control ${styles.resizeOff}`}
-              id="textArea2"
+              id="availiblity"
               rows="3"
+              onChange={handleChanges}
+              name="availiblity"
               placeholder="Enter text here..."
+              value={formData.availiblity}
             ></textarea>
           </div>
         </div>
         <div className="row d-flex justify-content-center mt-4">
           <div className="col-md-3">
-            <button onClick={handleSubmit} className="btn btn-primary px-5">
+            <button
+              disabled={
+                formData.checkskill.length === 0 ||
+                formData.availiblity.length === 0 ||
+                formData.finalQuestion.length === 0 ||
+                formData.qualification.length === 0
+              }
+              onClick={handleSubmit}
+              className="btn btn-primary px-5"
+            >
               Submit
             </button>
           </div>
